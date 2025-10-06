@@ -1,13 +1,25 @@
 import { useParams, Link } from "react-router-dom";
+import { useState } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
+import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel";
 import { ArrowLeft, Calendar, Gauge, Fuel, CheckCircle2, Shield, Clock, Phone } from "lucide-react";
+import VehicleCard from "@/components/VehicleCard";
 import carBmw from "@/assets/car-bmw.jpg";
+import carBmwRear from "@/assets/car-bmw-rear.jpg";
+import carBmwInterior from "@/assets/car-bmw-interior.jpg";
+import carBmwSide from "@/assets/car-bmw-side.jpg";
 import carToyota from "@/assets/car-toyota.jpg";
+import carToyotaRear from "@/assets/car-toyota-rear.jpg";
+import carToyotaInterior from "@/assets/car-toyota-interior.jpg";
+import carToyotaSide from "@/assets/car-toyota-side.jpg";
 import carMercedes from "@/assets/car-mercedes.jpg";
+import carMercedesRear from "@/assets/car-mercedes-rear.jpg";
+import carMercedesInterior from "@/assets/car-mercedes-interior.jpg";
+import carMercedesSide from "@/assets/car-mercedes-side.jpg";
 
 const allVehicles = [
   {
@@ -17,6 +29,7 @@ const allVehicles = [
     year: 2022,
     price: 35000,
     image: carBmw,
+    images: [carBmw, carBmwRear, carBmwInterior, carBmwSide],
     fuel: "Diesel",
     mileage: 45000,
     deliveryDays: 7,
@@ -41,6 +54,7 @@ const allVehicles = [
     year: 2023,
     price: 32000,
     image: carToyota,
+    images: [carToyota, carToyotaRear, carToyotaInterior, carToyotaSide],
     fuel: "Hybride",
     mileage: 25000,
     deliveryDays: 5,
@@ -65,6 +79,7 @@ const allVehicles = [
     year: 2021,
     price: 38000,
     image: carMercedes,
+    images: [carMercedes, carMercedesRear, carMercedesInterior, carMercedesSide],
     fuel: "Essence",
     mileage: 55000,
     deliveryDays: 10,
@@ -87,6 +102,12 @@ const allVehicles = [
 const VehicleDetails = () => {
   const { id } = useParams();
   const vehicle = allVehicles.find((v) => v.id === id);
+  const [selectedImage, setSelectedImage] = useState(0);
+
+  // Véhicules similaires (même type, excluant le véhicule actuel)
+  const similarVehicles = allVehicles.filter(
+    (v) => v.type === vehicle?.type && v.id !== id
+  ).slice(0, 2);
 
   if (!vehicle) {
     return (
@@ -120,14 +141,49 @@ const VehicleDetails = () => {
           </Button>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Image Section */}
+            {/* Image Gallery Section */}
             <div>
-              <div className="rounded-2xl overflow-hidden shadow-elegant mb-6">
-                <img
-                  src={vehicle.image}
-                  alt={`${vehicle.brand} ${vehicle.model}`}
-                  className="w-full h-[500px] object-cover"
-                />
+              {/* Main Carousel Image */}
+              <div className="mb-6">
+                <Carousel className="w-full" opts={{ loop: true }}>
+                  <CarouselContent>
+                    {vehicle.images.map((img, index) => (
+                      <CarouselItem key={index}>
+                        <div className="rounded-2xl overflow-hidden shadow-elegant">
+                          <img
+                            src={img}
+                            alt={`${vehicle.brand} ${vehicle.model} - Vue ${index + 1}`}
+                            className="w-full h-[500px] object-cover cursor-pointer"
+                            onClick={() => setSelectedImage(index)}
+                          />
+                        </div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious className="left-4" />
+                  <CarouselNext className="right-4" />
+                </Carousel>
+              </div>
+
+              {/* Thumbnail Gallery */}
+              <div className="grid grid-cols-4 gap-3 mb-6">
+                {vehicle.images.map((img, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setSelectedImage(index)}
+                    className={`rounded-lg overflow-hidden transition-all border-2 ${
+                      selectedImage === index
+                        ? "border-primary shadow-lg scale-105"
+                        : "border-transparent hover:border-primary/50"
+                    }`}
+                  >
+                    <img
+                      src={img}
+                      alt={`Vue ${index + 1}`}
+                      className="w-full h-20 object-cover"
+                    />
+                  </button>
+                ))}
               </div>
               
               {/* Trust Badges */}
@@ -269,6 +325,31 @@ const VehicleDetails = () => {
               </div>
             </div>
           </div>
+
+          {/* Similar Vehicles Section */}
+          {similarVehicles.length > 0 && (
+            <div className="mt-20">
+              <h2 className="text-3xl font-bold text-foreground mb-8">
+                Véhicules similaires
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {similarVehicles.map((v) => (
+                  <VehicleCard
+                    key={v.id}
+                    id={v.id}
+                    brand={v.brand}
+                    model={v.model}
+                    year={v.year}
+                    price={v.price}
+                    image={v.image}
+                    fuel={v.fuel}
+                    mileage={v.mileage}
+                    deliveryDays={v.deliveryDays}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </main>
 

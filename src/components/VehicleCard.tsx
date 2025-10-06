@@ -26,7 +26,10 @@ const VehicleCard = ({
   deliveryDays,
 }: VehicleCardProps) => {
   return (
-    <div className="group bg-card rounded-2xl overflow-hidden shadow-card hover:shadow-elegant transition-smooth border border-border/50">
+    <Link 
+      to={`/vehicule/${id}`}
+      className="group bg-card rounded-2xl overflow-hidden shadow-card hover:shadow-elegant transition-smooth border border-border/50 block cursor-pointer"
+    >
       {/* Image */}
       <div className="relative overflow-hidden aspect-[4/3]">
         <img
@@ -70,15 +73,13 @@ const VehicleCard = ({
             <p className="text-sm text-muted-foreground mb-1">À partir de</p>
             <p className="text-3xl font-bold text-primary">{price.toLocaleString()}€</p>
           </div>
-          <Button variant="hero" size="lg" className="group" asChild>
-            <Link to={`/vehicule/${id}`}>
-              Voir détails
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
+          <Button variant="hero" size="lg" className="group pointer-events-none">
+            Voir détails
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Button>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
