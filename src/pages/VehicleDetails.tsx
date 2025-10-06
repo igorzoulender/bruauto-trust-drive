@@ -6,7 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel";
-import { ArrowLeft, Calendar, Gauge, Fuel, CheckCircle2, Shield, Clock, Phone } from "lucide-react";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { ArrowLeft, Calendar, Gauge, Fuel, CheckCircle2, Shield, Clock, Phone, X } from "lucide-react";
 import VehicleCard from "@/components/VehicleCard";
 import carBmw from "@/assets/car-bmw.jpg";
 import carBmwRear from "@/assets/car-bmw-rear.jpg";
@@ -103,6 +104,7 @@ const VehicleDetails = () => {
   const { id } = useParams();
   const vehicle = allVehicles.find((v) => v.id === id);
   const [selectedImage, setSelectedImage] = useState(0);
+  const [isGalleryOpen, setIsGalleryOpen] = useState(false);
 
   // Véhicules similaires (même type, excluant le véhicule actuel)
   const similarVehicles = allVehicles.filter(
@@ -153,8 +155,11 @@ const VehicleDetails = () => {
                           <img
                             src={img}
                             alt={`${vehicle.brand} ${vehicle.model} - Vue ${index + 1}`}
-                            className="w-full h-[500px] object-cover cursor-pointer"
-                            onClick={() => setSelectedImage(index)}
+                            className="w-full h-[500px] object-cover cursor-pointer hover:opacity-95 transition-opacity"
+                            onClick={() => {
+                              setSelectedImage(index);
+                              setIsGalleryOpen(true);
+                            }}
                           />
                         </div>
                       </CarouselItem>
@@ -170,7 +175,10 @@ const VehicleDetails = () => {
                 {vehicle.images.map((img, index) => (
                   <button
                     key={index}
-                    onClick={() => setSelectedImage(index)}
+                    onClick={() => {
+                      setSelectedImage(index);
+                      setIsGalleryOpen(true);
+                    }}
                     className={`rounded-lg overflow-hidden transition-all border-2 ${
                       selectedImage === index
                         ? "border-primary shadow-lg scale-105"
@@ -352,6 +360,37 @@ const VehicleDetails = () => {
           )}
         </div>
       </main>
+
+      {/* Image Gallery Dialog */}
+      <Dialog open={isGalleryOpen} onOpenChange={setIsGalleryOpen}>
+        <DialogContent className="max-w-7xl w-full p-0 bg-black/95 border-none">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="absolute right-4 top-4 z-50 text-white hover:bg-white/20"
+            onClick={() => setIsGalleryOpen(false)}
+          >
+            <X className="h-6 w-6" />
+          </Button>
+          <Carousel className="w-full" opts={{ loop: true, startIndex: selectedImage }}>
+            <CarouselContent>
+              {vehicle.images.map((img, index) => (
+                <CarouselItem key={index}>
+                  <div className="flex items-center justify-center p-8">
+                    <img
+                      src={img}
+                      alt={`${vehicle.brand} ${vehicle.model} - Vue ${index + 1}`}
+                      className="max-h-[85vh] w-auto object-contain"
+                    />
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="left-4 bg-white/10 hover:bg-white/20 text-white border-none" />
+            <CarouselNext className="right-4 bg-white/10 hover:bg-white/20 text-white border-none" />
+          </Carousel>
+        </DialogContent>
+      </Dialog>
 
       <Footer />
     </div>
