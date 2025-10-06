@@ -15,6 +15,7 @@ interface VehicleCardProps {
 }
 
 const VehicleCard = ({
+  id,
   brand,
   model,
   year,
@@ -70,8 +71,8 @@ const VehicleCard = ({
             <p className="text-3xl font-bold text-primary">{price.toLocaleString()}€</p>
           </div>
           <Button variant="hero" size="lg" className="group" asChild>
-            <Link to="/contact">
-              Réserver
+            <Link to={`/vehicule/${id}`}>
+              Voir détails
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </Button>

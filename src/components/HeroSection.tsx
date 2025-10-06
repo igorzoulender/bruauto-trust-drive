@@ -48,7 +48,7 @@ const HeroSection = () => {
               </Link>
             </Button>
             <Button asChild variant="outline" size="xl" className="bg-primary-foreground/10 backdrop-blur-sm border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground hover:text-primary">
-              <Link to="/financement">Simuler mon financement</Link>
+              <Link to="/contact">Nous contacter</Link>
             </Button>
           </div>
 
