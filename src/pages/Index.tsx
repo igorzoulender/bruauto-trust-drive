@@ -5,13 +5,12 @@ import HowItWorks from "@/components/HowItWorks";
 import TrustSection from "@/components/TrustSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import CTASection from "@/components/CTASection";
+import ServicesSection from "@/components/ServicesSection";
+import RegisteredVehiclesSection from "@/components/RegisteredVehiclesSection";
 import VehicleCard from "@/components/VehicleCard";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-import carBmw from "@/assets/car-bmw.jpg";
-import carToyota from "@/assets/car-toyota.jpg";
-import carMercedes from "@/assets/car-mercedes.jpg";
 import { allVehicles } from "@/data/vehiclesData";
 
 
@@ -23,6 +22,7 @@ const Index = () => {
       <main className="pt-20">
         <HeroSection />
         <HowItWorks />
+        <ServicesSection />
         
         {/* Popular Vehicles Section */}
         <section className="py-20 lg:py-32">
@@ -54,6 +54,7 @@ const Index = () => {
           </div>
         </section>
 
+        <RegisteredVehiclesSection />
         <TrustSection />
         <TestimonialsSection />
         <CTASection />
