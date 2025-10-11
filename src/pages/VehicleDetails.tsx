@@ -5,100 +5,34 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
+} from "@/components/ui/carousel";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { ArrowLeft, Calendar, Gauge, Fuel, CheckCircle2, Shield, Clock, Phone, X } from "lucide-react";
+import {
+  ArrowLeft,
+  Calendar,
+  Gauge,
+  Fuel,
+  CheckCircle2,
+  Shield,
+  Clock,
+  Phone,
+  X,
+  Car,
+  Settings,
+  Droplets,
+  Zap,
+  Users,
+  Palette,
+  DoorOpen,
+} from "lucide-react";
 import VehicleCard from "@/components/VehicleCard";
-import carBmw from "@/assets/car-bmw.jpg";
-import carBmwRear from "@/assets/car-bmw-rear.jpg";
-import carBmwInterior from "@/assets/car-bmw-interior.jpg";
-import carBmwSide from "@/assets/car-bmw-side.jpg";
-import carToyota from "@/assets/car-toyota.jpg";
-import carToyotaRear from "@/assets/car-toyota-rear.jpg";
-import carToyotaInterior from "@/assets/car-toyota-interior.jpg";
-import carToyotaSide from "@/assets/car-toyota-side.jpg";
-import carMercedes from "@/assets/car-mercedes.jpg";
-import carMercedesRear from "@/assets/car-mercedes-rear.jpg";
-import carMercedesInterior from "@/assets/car-mercedes-interior.jpg";
-import carMercedesSide from "@/assets/car-mercedes-side.jpg";
-
-const allVehicles = [
-  {
-    id: "1",
-    brand: "BMW",
-    model: "Série 3",
-    year: 2022,
-    price: 35000,
-    image: carBmw,
-    images: [carBmw, carBmwRear, carBmwInterior, carBmwSide],
-    fuel: "Diesel",
-    mileage: 45000,
-    deliveryDays: 7,
-    type: "Berline",
-    description: "BMW Série 3 en excellent état. Véhicule soigneusement entretenu avec historique complet. Intérieur cuir, navigation GPS, sièges chauffants et système audio premium.",
-    features: [
-      "Système de navigation GPS",
-      "Sièges en cuir chauffants",
-      "Caméra de recul",
-      "Régulateur de vitesse adaptatif",
-      "Système audio premium",
-      "Jantes alliage 18 pouces"
-    ],
-    inspection: "Inspection complète 150 points validée",
-    warranty: "Garantie moteur et boîte 12 mois incluse",
-    vin: "WBA3B5C50DF123456"
-  },
-  {
-    id: "2",
-    brand: "Toyota",
-    model: "RAV4",
-    year: 2023,
-    price: 32000,
-    image: carToyota,
-    images: [carToyota, carToyotaRear, carToyotaInterior, carToyotaSide],
-    fuel: "Hybride",
-    mileage: 25000,
-    deliveryDays: 5,
-    type: "SUV",
-    description: "Toyota RAV4 Hybride récent, économique et fiable. Consommation réduite grâce à la technologie hybride. Parfait pour la famille avec un grand coffre et confort optimal.",
-    features: [
-      "Technologie hybride Toyota",
-      "Caméra 360°",
-      "Apple CarPlay & Android Auto",
-      "Sièges arrière chauffants",
-      "Toit panoramique",
-      "Hayon électrique"
-    ],
-    inspection: "Inspection complète 150 points validée",
-    warranty: "Garantie moteur et boîte 12 mois incluse",
-    vin: "2T3P1RFV8PC123456"
-  },
-  {
-    id: "3",
-    brand: "Mercedes",
-    model: "Classe C",
-    year: 2021,
-    price: 38000,
-    image: carMercedes,
-    images: [carMercedes, carMercedesRear, carMercedesInterior, carMercedesSide],
-    fuel: "Essence",
-    mileage: 55000,
-    deliveryDays: 10,
-    type: "Berline",
-    description: "Mercedes Classe C élégante et performante. Finition haut de gamme avec équipements premium. Conduite raffinée et confort exceptionnel pour tous vos trajets.",
-    features: [
-      "Système MBUX multimédia",
-      "Sellerie cuir Artico",
-      "Climatisation automatique bi-zone",
-      "Phares LED Multibeam",
-      "Assistance parking active",
-      "Pack AMG Line"
-    ],
-    inspection: "Inspection complète 150 points validée",
-    warranty: "Garantie moteur et boîte 12 mois incluse",
-    vin: "WDD2050061F123456"
-  },
-];
+import { allVehicles } from "@/data/vehiclesData";
 
 const VehicleDetails = () => {
   const { id } = useParams();
@@ -106,18 +40,19 @@ const VehicleDetails = () => {
   const [selectedImage, setSelectedImage] = useState(0);
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
 
-  // Véhicules similaires (même type, excluant le véhicule actuel)
-  const similarVehicles = allVehicles.filter(
-    (v) => v.type === vehicle?.type && v.id !== id
-  ).slice(0, 2);
+  const similarVehicles = allVehicles
+    .filter((v) => v.type === vehicle?.type && v.id !== id)
+    .slice(0, 8);
 
   if (!vehicle) {
     return (
       <div className="min-h-screen bg-background">
         <Navigation />
         <main className="pt-32 pb-20">
-          <div className="container mx-auto px-4 lg:px-8 text-center">
-            <h1 className="text-4xl font-bold text-foreground mb-6">Véhicule non trouvé</h1>
+          <div className="container mx-auto px-4 text-center">
+            <h1 className="text-4xl font-bold text-foreground mb-6">
+              Véhicule non trouvé
+            </h1>
             <Button asChild variant="hero">
               <Link to="/vehicules">Retour aux véhicules</Link>
             </Button>
@@ -143,64 +78,27 @@ const VehicleDetails = () => {
           </Button>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Image Gallery Section */}
+            {/* Images */}
             <div>
-              {/* Main Carousel Image */}
               <div className="mb-6">
-                <Carousel className="w-full" opts={{ loop: true }}>
-                  <CarouselContent>
-                    {vehicle.images.map((img, index) => (
-                      <CarouselItem key={index}>
-                        <div className="rounded-2xl overflow-hidden shadow-elegant">
-                          <img
-                            src={img}
-                            alt={`${vehicle.brand} ${vehicle.model} - Vue ${index + 1}`}
-                            className="w-full h-[500px] object-cover cursor-pointer hover:opacity-95 transition-opacity"
-                            onClick={() => {
-                              setSelectedImage(index);
-                              setIsGalleryOpen(true);
-                            }}
-                          />
-                        </div>
-                      </CarouselItem>
-                    ))}
-                  </CarouselContent>
-                  <CarouselPrevious className="left-4" />
-                  <CarouselNext className="right-4" />
-                </Carousel>
+                <div className="rounded-2xl overflow-hidden shadow-elegant">
+                  <img
+                    src={vehicle.image}
+                    alt={`${vehicle.brand} ${vehicle.model}`}
+                    className="w-full h-[500px] object-cover"
+                    onClick={() => setIsGalleryOpen(true)}
+                  />
+                </div>
               </div>
 
-              {/* Thumbnail Gallery */}
-              <div className="grid grid-cols-4 gap-3 mb-6">
-                {vehicle.images.map((img, index) => (
-                  <button
-                    key={index}
-                    onClick={() => {
-                      setSelectedImage(index);
-                      setIsGalleryOpen(true);
-                    }}
-                    className={`rounded-lg overflow-hidden transition-all border-2 ${
-                      selectedImage === index
-                        ? "border-primary shadow-lg scale-105"
-                        : "border-transparent hover:border-primary/50"
-                    }`}
-                  >
-                    <img
-                      src={img}
-                      alt={`Vue ${index + 1}`}
-                      className="w-full h-20 object-cover"
-                    />
-                  </button>
-                ))}
-              </div>
-              
-              {/* Trust Badges */}
               <div className="grid grid-cols-2 gap-4">
                 <Card className="border-accent/20">
                   <CardContent className="p-4 flex items-center gap-3">
                     <Shield className="w-8 h-8 text-accent" />
                     <div>
-                      <p className="text-sm text-muted-foreground">Inspection</p>
+                      <p className="text-sm text-muted-foreground">
+                        Inspection
+                      </p>
                       <p className="font-semibold">150 Points</p>
                     </div>
                   </CardContent>
@@ -217,21 +115,20 @@ const VehicleDetails = () => {
               </div>
             </div>
 
-            {/* Details Section */}
+            {/* Détails véhicule */}
             <div>
-              <div className="mb-6">
-                <Badge variant="secondary" className="mb-4">
-                  {vehicle.type}
-                </Badge>
-                <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-                  {vehicle.brand} <span className="text-primary">{vehicle.model}</span>
-                </h1>
-                <p className="text-3xl font-bold text-primary mb-6">
-                  {vehicle.price.toLocaleString()}€
-                </p>
-              </div>
+              <Badge variant="secondary" className="mb-4">
+                {vehicle.type}
+              </Badge>
+              <h1 className="text-4xl md:text-5xl font-bold mb-4">
+                {vehicle.brand}{" "}
+                <span className="text-primary">{vehicle.model}</span>
+              </h1>
+              <p className="text-3xl font-bold text-primary mb-6">
+                {vehicle.price.toLocaleString()} €
+              </p>
 
-              {/* Key Specs */}
+              {/* Specs principales */}
               <div className="grid grid-cols-2 gap-4 mb-8">
                 <Card>
                   <CardContent className="p-4 flex items-center gap-3">
@@ -246,8 +143,12 @@ const VehicleDetails = () => {
                   <CardContent className="p-4 flex items-center gap-3">
                     <Gauge className="w-5 h-5 text-primary" />
                     <div>
-                      <p className="text-sm text-muted-foreground">Kilométrage</p>
-                      <p className="font-semibold">{vehicle.mileage.toLocaleString()} km</p>
+                      <p className="text-sm text-muted-foreground">
+                        Kilométrage
+                      </p>
+                      <p className="font-semibold">
+                        {vehicle.mileage.toLocaleString()} km
+                      </p>
                     </div>
                   </CardContent>
                 </Card>
@@ -265,61 +166,67 @@ const VehicleDetails = () => {
                     <Clock className="w-5 h-5 text-primary" />
                     <div>
                       <p className="text-sm text-muted-foreground">Livraison</p>
-                      <p className="font-semibold">{vehicle.deliveryDays} jours</p>
+                      <p className="font-semibold">
+                        {vehicle.deliveryDays} jours
+                      </p>
                     </div>
                   </CardContent>
                 </Card>
               </div>
 
               {/* Description */}
-              <div className="mb-8">
-                <h2 className="text-2xl font-bold text-foreground mb-4">Description</h2>
-                <p className="text-muted-foreground leading-relaxed">{vehicle.description}</p>
-              </div>
+              {vehicle.description && (
+                <div className="mb-8">
+                  <h2 className="text-2xl font-bold mb-4">Description</h2>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {vehicle.description}
+                  </p>
+                </div>
+              )}
 
-              {/* Features */}
+              {/* ⚙️ Caractéristiques techniques */}
               <div className="mb-8">
-                <h2 className="text-2xl font-bold text-foreground mb-4">Équipements</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {vehicle.features.map((feature, index) => (
-                    <div key={index} className="flex items-start gap-2">
-                      <CheckCircle2 className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
-                      <span className="text-muted-foreground">{feature}</span>
-                    </div>
-                  ))}
+                <h2 className="text-2xl font-bold text-foreground mb-4">
+                  Caractéristiques techniques
+                </h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <TechItem
+                    icon={Settings}
+                    label="Transmission"
+                    value={vehicle.transmission}
+                  />
+                  <TechItem
+                    icon={Zap}
+                    label="Puissance"
+                    value={vehicle.power}
+                  />
+                  <TechItem
+                    icon={Droplets}
+                    label="Consommation"
+                    value={vehicle.consumption}
+                  />
+                  <TechItem
+                    icon={DoorOpen}
+                    label="Portes"
+                    value={`${vehicle.doors}`}
+                  />
+                  <TechItem
+                    icon={Users}
+                    label="Places"
+                    value={`${vehicle.seats}`}
+                  />
+                  <TechItem
+                    icon={Palette}
+                    label="Couleur"
+                    value={vehicle.color}
+                  />
+                  {vehicle.climateControl && (
+                    <TechItem icon={Car} label="Climatisation" value="Oui" />
+                  )}
                 </div>
               </div>
 
-              {/* Inspection & Warranty */}
-              <Card className="bg-accent/5 border-accent/20 mb-8">
-                <CardContent className="p-6">
-                  <div className="space-y-3">
-                    <div className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-accent mt-0.5" />
-                      <div>
-                        <p className="font-semibold text-foreground">{vehicle.inspection}</p>
-                        <p className="text-sm text-muted-foreground">Rapport détaillé disponible sur demande</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-accent mt-0.5" />
-                      <div>
-                        <p className="font-semibold text-foreground">{vehicle.warranty}</p>
-                        <p className="text-sm text-muted-foreground">Extensions de garantie disponibles</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-accent mt-0.5" />
-                      <div>
-                        <p className="font-semibold text-foreground">Numéro VIN : {vehicle.vin}</p>
-                        <p className="text-sm text-muted-foreground">Traçabilité complète du véhicule</p>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* CTA Buttons */}
+              {/* Boutons CTA */}
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button asChild variant="hero" size="lg" className="flex-1">
                   <Link to="/contact">Réserver ce véhicule</Link>
@@ -334,25 +241,15 @@ const VehicleDetails = () => {
             </div>
           </div>
 
-          {/* Similar Vehicles Section */}
+          {/* Véhicules similaires */}
           {similarVehicles.length > 0 && (
             <div className="mt-20">
-              <h2 className="text-3xl font-bold text-foreground mb-8">
-                Véhicules similaires
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {similarVehicles.map((v) => (
+              <h2 className="text-3xl font-bold mb-8">Véhicules similaires</h2>
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+                {similarVehicles.map((vehicle) => (
                   <VehicleCard
-                    key={v.id}
-                    id={v.id}
-                    brand={v.brand}
-                    model={v.model}
-                    year={v.year}
-                    price={v.price}
-                    image={v.image}
-                    fuel={v.fuel}
-                    mileage={v.mileage}
-                    deliveryDays={v.deliveryDays}
+                    key={vehicle.id}
+                    {...vehicle}
                   />
                 ))}
               </div>
@@ -361,7 +258,6 @@ const VehicleDetails = () => {
         </div>
       </main>
 
-      {/* Image Gallery Dialog */}
       <Dialog open={isGalleryOpen} onOpenChange={setIsGalleryOpen}>
         <DialogContent className="max-w-7xl w-full p-0 bg-black/95 border-none">
           <Button
@@ -372,23 +268,11 @@ const VehicleDetails = () => {
           >
             <X className="h-6 w-6" />
           </Button>
-          <Carousel className="w-full" opts={{ loop: true, startIndex: selectedImage }}>
-            <CarouselContent>
-              {vehicle.images.map((img, index) => (
-                <CarouselItem key={index}>
-                  <div className="flex items-center justify-center p-8">
-                    <img
-                      src={img}
-                      alt={`${vehicle.brand} ${vehicle.model} - Vue ${index + 1}`}
-                      className="max-h-[85vh] w-auto object-contain"
-                    />
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious className="left-4 bg-white/10 hover:bg-white/20 text-white border-none" />
-            <CarouselNext className="right-4 bg-white/10 hover:bg-white/20 text-white border-none" />
-          </Carousel>
+          <img
+            src={vehicle.image}
+            alt={`${vehicle.brand} ${vehicle.model}`}
+            className="w-full max-h-[85vh] object-contain"
+          />
         </DialogContent>
       </Dialog>
 
@@ -396,5 +280,18 @@ const VehicleDetails = () => {
     </div>
   );
 };
+
+// 🔧 Sous-composant pour une ligne de caractéristiques
+const TechItem = ({ icon: Icon, label, value }) => (
+  <Card className="border-accent/20">
+    <CardContent className="p-4 flex items-center gap-3">
+      <Icon className="w-5 h-5 text-primary" />
+      <div>
+        <p className="text-sm text-muted-foreground">{label}</p>
+        <p className="font-semibold">{value}</p>
+      </div>
+    </CardContent>
+  </Card>
+);
 
 export default VehicleDetails;

@@ -23,7 +23,7 @@ const HeroSection = () => {
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/20 backdrop-blur-sm border border-secondary/30 mb-8 animate-fade-in">
             <Award className="w-4 h-4 text-secondary" />
             <span className="text-sm font-medium text-primary-foreground">
-              Plateforme de Confiance N°1 en Belgique
+              Plateforme de Confiance N°1 au Togo
             </span>
           </div>
 

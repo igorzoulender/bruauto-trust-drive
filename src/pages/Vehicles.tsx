@@ -2,98 +2,51 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import VehicleCard from "@/components/VehicleCard";
 import { Button } from "@/components/ui/button";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Slider } from "@/components/ui/slider";
 import { useState } from "react";
 import carBmw from "@/assets/car-bmw.jpg";
 import carToyota from "@/assets/car-toyota.jpg";
 import carMercedes from "@/assets/car-mercedes.jpg";
-
-const allVehicles = [
-  {
-    id: "1",
-    brand: "BMW",
-    model: "Série 3",
-    year: 2022,
-    price: 35000,
-    image: carBmw,
-    fuel: "Diesel",
-    mileage: 45000,
-    deliveryDays: 7,
-    type: "Berline",
-  },
-  {
-    id: "2",
-    brand: "Toyota",
-    model: "RAV4",
-    year: 2023,
-    price: 32000,
-    image: carToyota,
-    fuel: "Hybride",
-    mileage: 25000,
-    deliveryDays: 5,
-    type: "SUV",
-  },
-  {
-    id: "3",
-    brand: "Mercedes",
-    model: "Classe C",
-    year: 2021,
-    price: 38000,
-    image: carMercedes,
-    fuel: "Essence",
-    mileage: 55000,
-    deliveryDays: 10,
-    type: "Berline",
-  },
-  {
-    id: "4",
-    brand: "BMW",
-    model: "X5",
-    year: 2022,
-    price: 48000,
-    image: carBmw,
-    fuel: "Diesel",
-    mileage: 35000,
-    deliveryDays: 8,
-    type: "SUV",
-  },
-  {
-    id: "5",
-    brand: "Toyota",
-    model: "Corolla",
-    year: 2023,
-    price: 24000,
-    image: carToyota,
-    fuel: "Hybride",
-    mileage: 15000,
-    deliveryDays: 5,
-    type: "Citadine",
-  },
-  {
-    id: "6",
-    brand: "Mercedes",
-    model: "GLE",
-    year: 2022,
-    price: 55000,
-    image: carMercedes,
-    fuel: "Essence",
-    mileage: 40000,
-    deliveryDays: 12,
-    type: "SUV",
-  },
-];
+import { allVehicles } from "@/data/vehiclesData";
 
 const Vehicles = () => {
   const [selectedBrand, setSelectedBrand] = useState<string>("all");
   const [selectedType, setSelectedType] = useState<string>("all");
   const [selectedFuel, setSelectedFuel] = useState<string>("all");
+  const [selectedTransmission, setSelectedTransmission] =
+    useState<string>("all");
+  const [hasClimateControl, setHasClimateControl] = useState<string>("all");
   const [maxPrice, setMaxPrice] = useState<number[]>([60000]);
 
+  // Récupérer toutes les valeurs uniques pour les filtres
+  const brands = [...new Set(allVehicles.map((vehicle) => vehicle.brand))];
+  const types = [...new Set(allVehicles.map((vehicle) => vehicle.type))];
+  const fuels = [...new Set(allVehicles.map((vehicle) => vehicle.fuel))];
+  const transmissions = [
+    ...new Set(allVehicles.map((vehicle) => vehicle.transmission)),
+  ];
+
   const filteredVehicles = allVehicles.filter((vehicle) => {
-    if (selectedBrand !== "all" && vehicle.brand !== selectedBrand) return false;
+    if (selectedBrand !== "all" && vehicle.brand !== selectedBrand)
+      return false;
     if (selectedType !== "all" && vehicle.type !== selectedType) return false;
     if (selectedFuel !== "all" && vehicle.fuel !== selectedFuel) return false;
+    if (
+      selectedTransmission !== "all" &&
+      vehicle.transmission !== selectedTransmission
+    )
+      return false;
+    if (hasClimateControl !== "all") {
+      const hasClimate = hasClimateControl === "yes";
+      if (vehicle.climateControl !== hasClimate) return false;
+    }
     if (vehicle.price > maxPrice[0]) return false;
     return true;
   });
@@ -102,6 +55,8 @@ const Vehicles = () => {
     setSelectedBrand("all");
     setSelectedType("all");
     setSelectedFuel("all");
+    setSelectedTransmission("all");
+    setHasClimateControl("all");
     setMaxPrice([60000]);
   };
 
@@ -117,8 +72,9 @@ const Vehicles = () => {
               Nos <span className="text-primary">véhicules</span>
             </h1>
             <p className="text-lg text-muted-foreground">
-              Parcourez notre sélection de véhicules soigneusement inspectés et garantis.
-              Trouvez la voiture qui correspond parfaitement à vos besoins.
+              Parcourez notre sélection de véhicules soigneusement inspectés et
+              garantis. Trouvez la voiture qui correspond parfaitement à vos
+              besoins.
             </p>
           </div>
 
@@ -136,9 +92,11 @@ const Vehicles = () => {
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="all">Toutes les marques</SelectItem>
-                    <SelectItem value="BMW">BMW</SelectItem>
-                    <SelectItem value="Toyota">Toyota</SelectItem>
-                    <SelectItem value="Mercedes">Mercedes</SelectItem>
+                    {brands.map((brand) => (
+                      <SelectItem key={brand} value={brand}>
+                        {brand}
+                      </SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
               </div>
@@ -154,9 +112,11 @@ const Vehicles = () => {
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="all">Tous les types</SelectItem>
-                    <SelectItem value="Citadine">Citadine</SelectItem>
-                    <SelectItem value="Berline">Berline</SelectItem>
-                    <SelectItem value="SUV">SUV</SelectItem>
+                    {types.map((type) => (
+                      <SelectItem key={type} value={type}>
+                        {type}
+                      </SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
               </div>
@@ -172,23 +132,68 @@ const Vehicles = () => {
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="all">Tous les carburants</SelectItem>
-                    <SelectItem value="Essence">Essence</SelectItem>
-                    <SelectItem value="Diesel">Diesel</SelectItem>
-                    <SelectItem value="Hybride">Hybride</SelectItem>
+                    {fuels.map((fuel) => (
+                      <SelectItem key={fuel} value={fuel}>
+                        {fuel}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Transmission Filter */}
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-2">
+                  Boîte de vitesse
+                </label>
+                <Select
+                  value={selectedTransmission}
+                  onValueChange={setSelectedTransmission}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Toutes les boîtes" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">Toutes les boîtes</SelectItem>
+                    {transmissions.map((transmission) => (
+                      <SelectItem key={transmission} value={transmission}>
+                        {transmission}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Climate Control Filter */}
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-2">
+                  Climatisation
+                </label>
+                <Select
+                  value={hasClimateControl}
+                  onValueChange={setHasClimateControl}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Climatisation" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">Peu importe</SelectItem>
+                    <SelectItem value="yes">Avec climatisation</SelectItem>
+                    <SelectItem value="no">Sans climatisation</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
 
               {/* Price Filter */}
-              <div>
+              <div className="lg:col-span-2">
                 <label className="block text-sm font-medium text-foreground mb-2">
                   Budget maximum: {maxPrice[0].toLocaleString()}€
                 </label>
                 <Slider
                   value={maxPrice}
                   onValueChange={setMaxPrice}
-                  max={60000}
-                  min={20000}
+                  max={80000}
+                  min={10000}
                   step={5000}
                   className="mt-2"
                 />
@@ -197,7 +202,8 @@ const Vehicles = () => {
 
             <div className="flex items-center justify-between mt-6 pt-6 border-t border-border">
               <p className="text-sm text-muted-foreground">
-                {filteredVehicles.length} véhicule{filteredVehicles.length > 1 ? "s" : ""} trouvé
+                {filteredVehicles.length} véhicule
+                {filteredVehicles.length > 1 ? "s" : ""} trouvé
                 {filteredVehicles.length > 1 ? "s" : ""}
               </p>
               <Button variant="ghost" onClick={resetFilters}>
@@ -208,7 +214,7 @@ const Vehicles = () => {
 
           {/* Vehicle Grid */}
           {filteredVehicles.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
               {filteredVehicles.map((vehicle) => (
                 <VehicleCard key={vehicle.id} {...vehicle} />
               ))}

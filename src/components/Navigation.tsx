@@ -16,18 +16,15 @@ const Navigation = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border shadow-card">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#f7f7f7] backdrop-blur-md border-b border-border shadow-card">
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group">
-            <div className="w-12 h-12 rounded-xl gradient-primary flex items-center justify-center shadow-card group-hover:shadow-elegant transition-smooth">
-              <Car className="w-6 h-6 text-primary-foreground" />
-            </div>
-            <div className="hidden sm:block">
-              <span className="text-2xl font-bold text-primary tracking-tight">BRU</span>
-              <span className="text-2xl font-bold text-secondary">-AUTO</span>
-            </div>
+        <div className="flex items-center justify-between h-20 lg:h-24">
+          <Link to="/" className="flex items-center gap-3">
+            <img
+              src="/img/asr.jpeg"
+              alt="ASR Auto"
+              className="h-20 md:h-14 lg:h-20 w-auto max-h-full shrink-0 object-contain"
+            />
           </Link>
 
           {/* Desktop Navigation */}
@@ -65,7 +62,11 @@ const Navigation = () => {
             className="lg:hidden p-2 text-primary hover:bg-muted rounded-lg transition-smooth"
             aria-label="Toggle menu"
           >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {mobileMenuOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <Menu className="w-6 h-6" />
+            )}
           </button>
         </div>
 

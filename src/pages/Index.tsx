@@ -12,42 +12,8 @@ import { ArrowRight } from "lucide-react";
 import carBmw from "@/assets/car-bmw.jpg";
 import carToyota from "@/assets/car-toyota.jpg";
 import carMercedes from "@/assets/car-mercedes.jpg";
+import { allVehicles } from "@/data/vehiclesData";
 
-const popularVehicles = [
-  {
-    id: "1",
-    brand: "BMW",
-    model: "Série 3",
-    year: 2022,
-    price: 35000,
-    image: carBmw,
-    fuel: "Diesel",
-    mileage: 45000,
-    deliveryDays: 7,
-  },
-  {
-    id: "2",
-    brand: "Toyota",
-    model: "RAV4",
-    year: 2023,
-    price: 32000,
-    image: carToyota,
-    fuel: "Hybride",
-    mileage: 25000,
-    deliveryDays: 5,
-  },
-  {
-    id: "3",
-    brand: "Mercedes",
-    model: "Classe C",
-    year: 2021,
-    price: 38000,
-    image: carMercedes,
-    fuel: "Essence",
-    mileage: 55000,
-    deliveryDays: 10,
-  },
-];
 
 const Index = () => {
   return (
@@ -71,8 +37,8 @@ const Index = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-              {popularVehicles.map((vehicle) => (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+              {allVehicles.slice(0, 8).map((vehicle) => (
                 <VehicleCard key={vehicle.id} {...vehicle} />
               ))}
             </div>
