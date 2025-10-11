@@ -54,6 +54,8 @@ const HowItWorks = () => {
               style={{ animationDelay: `${index * 150}ms` }}
             >
               <div className="bg-card rounded-2xl p-8 shadow-card hover:shadow-elegant transition-smooth h-full border border-border/50">
+
+              <div className="flex flex-row items-center mb-6 justify-between">
                 {/* Step Number */}
                 <div className="w-16 h-16 rounded-xl gradient-primary flex items-center justify-center mb-6 relative z-10">
                   <span className="text-2xl font-bold text-primary-foreground">{step.number}</span>
@@ -63,6 +65,7 @@ const HowItWorks = () => {
                 <div className="w-14 h-14 rounded-lg bg-muted flex items-center justify-center mb-6">
                   <step.icon className="w-7 h-7 text-primary" />
                 </div>
+              </div>
 
                 {/* Content */}
                 <h3 className="text-xl font-semibold text-foreground mb-4">{step.title}</h3>
