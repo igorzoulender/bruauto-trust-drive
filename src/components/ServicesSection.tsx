@@ -1,7 +1,13 @@
+import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { Button } from "./ui/button";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "./ui/dialog";
 import { ShoppingCart, FileCheck, CreditCard, CheckCircle2 } from "lucide-react";
+import VehicleOrderForm from "./VehicleOrderForm";
 
 const ServicesSection = () => {
+  const [isOrderFormOpen, setIsOrderFormOpen] = useState(false);
+
   return (
     <section className="py-20 lg:py-32 bg-muted/30">
       <div className="container mx-auto px-4 lg:px-8">
@@ -48,6 +54,12 @@ const ServicesSection = () => {
                   </span>
                 </li>
               </ul>
+              <Button 
+                onClick={() => setIsOrderFormOpen(true)}
+                className="w-full mt-6 bg-primary hover:bg-primary/90"
+              >
+                Commander maintenant
+              </Button>
             </CardContent>
           </Card>
 
@@ -137,9 +149,20 @@ const ServicesSection = () => {
             </CardContent>
           </Card>
         </div>
+
+        {/* Dialog pour le formulaire de commande */}
+        <Dialog open={isOrderFormOpen} onOpenChange={setIsOrderFormOpen}>
+          <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+            <DialogHeader>
+              <DialogTitle className="text-2xl">Commander votre véhicule</DialogTitle>
+            </DialogHeader>
+            <VehicleOrderForm onClose={() => setIsOrderFormOpen(false)} />
+          </DialogContent>
+        </Dialog>
       </div>
     </section>
   );
 };
 
 export default ServicesSection;
+
