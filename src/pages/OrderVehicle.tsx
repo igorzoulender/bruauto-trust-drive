@@ -66,6 +66,18 @@ const OrderVehicle = () => {
   const watchBrand = form.watch("brand");
 
   const onSubmit = (data: FormData) => {
+    // Sauvegarder dans localStorage
+    const order = {
+      id: Date.now().toString(),
+      ...data,
+      date: new Date().toISOString(),
+    };
+
+    const existingOrders = localStorage.getItem("vehicle-orders");
+    const orders = existingOrders ? JSON.parse(existingOrders) : [];
+    orders.push(order);
+    localStorage.setItem("vehicle-orders", JSON.stringify(orders));
+
     console.log("Form data:", data);
     toast.success("Votre commande a été envoyée avec succès!");
     form.reset();

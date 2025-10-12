@@ -23,6 +23,18 @@ const Contact = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
+    // Sauvegarder dans localStorage
+    const contactRequest = {
+      id: Date.now().toString(),
+      ...formData,
+      date: new Date().toISOString(),
+    };
+
+    const existingContacts = localStorage.getItem("contact-requests");
+    const contacts = existingContacts ? JSON.parse(existingContacts) : [];
+    contacts.push(contactRequest);
+    localStorage.setItem("contact-requests", JSON.stringify(contacts));
+
     toast({
       title: "Message envoyé !",
       description: "Nous vous recontacterons dans les plus brefs délais.",
