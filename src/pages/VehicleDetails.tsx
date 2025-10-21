@@ -1,5 +1,5 @@
 import { useParams, Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -32,15 +32,24 @@ import {
   DoorOpen,
 } from "lucide-react";
 import VehicleCard from "@/components/VehicleCard";
-import { allVehicles } from "@/data/vehiclesData";
 
 const VehicleDetails = () => {
   const { id } = useParams();
-  const vehicle = allVehicles.find((v) => v.id === id);
+  const [vehicles, setVehicles] = useState<any[]>([]);
   const [selectedImage, setSelectedImage] = useState(0);
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
 
-  const similarVehicles = allVehicles
+  // Charger les véhicules depuis localStorage
+  useEffect(() => {
+    const savedVehicles = localStorage.getItem("admin-vehicles");
+    if (savedVehicles) {
+      setVehicles(JSON.parse(savedVehicles));
+    }
+  }, []);
+
+  const vehicle = vehicles.find((v) => v.id === id);
+
+  const similarVehicles = vehicles
     .filter((v) => v.type === vehicle?.type && v.id !== id)
     .slice(0, 8);
 
