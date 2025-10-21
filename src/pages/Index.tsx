@@ -11,10 +11,20 @@ import VehicleCard from "@/components/VehicleCard";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-import { allVehicles } from "@/data/vehiclesData";
+import { useState, useEffect } from "react";
 
 
 const Index = () => {
+  const [popularVehicles, setPopularVehicles] = useState<any[]>([]);
+
+  useEffect(() => {
+    const savedVehicles = localStorage.getItem("admin-vehicles");
+    if (savedVehicles) {
+      const vehicles = JSON.parse(savedVehicles);
+      setPopularVehicles(vehicles.slice(0, 8));
+    }
+  }, []);
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -37,11 +47,18 @@ const Index = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-              {allVehicles.slice(0, 8).map((vehicle) => (
-                <VehicleCard key={vehicle.id} {...vehicle} />
-              ))}
-            </div>
+            {popularVehicles.length > 0 ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                {popularVehicles.map((vehicle) => (
+                  <VehicleCard key={vehicle.id} {...vehicle} />
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-12 text-muted-foreground">
+                <p className="text-lg mb-4">Aucun véhicule disponible pour le moment</p>
+                <p className="text-sm">Ajoutez des véhicules depuis le dashboard administrateur</p>
+              </div>
+            )}
 
             <div className="text-center">
               <Button asChild variant="hero" size="xl" className="group">

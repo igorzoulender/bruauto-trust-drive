@@ -25,6 +25,7 @@ interface VehicleData {
   climateControl: boolean;
   deliveryDays: number;
   image: string;
+  registered: boolean;
 }
 
 interface AddVehicleModalProps {
@@ -53,6 +54,7 @@ export function AddVehicleModal({ open, onOpenChange, onVehicleAdded }: AddVehic
     climateControl: true,
     deliveryDays: 7,
     image: "",
+    registered: false,
   });
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -101,6 +103,7 @@ export function AddVehicleModal({ open, onOpenChange, onVehicleAdded }: AddVehic
       climateControl: true,
       deliveryDays: 7,
       image: "",
+      registered: false,
     });
     setImagePreview("");
     onOpenChange(false);
@@ -267,7 +270,7 @@ export function AddVehicleModal({ open, onOpenChange, onVehicleAdded }: AddVehic
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
               <Label htmlFor="doors">Nombre de portes</Label>
               <Input
@@ -285,6 +288,21 @@ export function AddVehicleModal({ open, onOpenChange, onVehicleAdded }: AddVehic
                 value={vehicleForm.seats}
                 onChange={(e) => setVehicleForm({ ...vehicleForm, seats: parseInt(e.target.value) })}
               />
+            </div>
+            <div>
+              <Label htmlFor="registered">Statut du véhicule</Label>
+              <Select
+                value={vehicleForm.registered ? "yes" : "no"}
+                onValueChange={(value) => setVehicleForm({ ...vehicleForm, registered: value === "yes" })}
+              >
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="no">À immatriculer</SelectItem>
+                  <SelectItem value="yes">Immatriculé (disponible immédiatement)</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
           </div>
 

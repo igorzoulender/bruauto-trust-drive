@@ -2,11 +2,19 @@ import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
 import { ArrowRight, BadgeCheck } from "lucide-react";
 import VehicleCard from "./VehicleCard";
-import { allVehicles } from "@/data/vehiclesData";
+import { useState, useEffect } from "react";
 
 const RegisteredVehiclesSection = () => {
-  // Filter pour avoir des véhicules immatriculés (exemple: on prend les 4 premiers)
-  const registeredVehicles = allVehicles.slice(0, 4);
+  const [registeredVehicles, setRegisteredVehicles] = useState<any[]>([]);
+
+  useEffect(() => {
+    const savedVehicles = localStorage.getItem("admin-vehicles");
+    if (savedVehicles) {
+      const vehicles = JSON.parse(savedVehicles);
+      const registered = vehicles.filter((v: any) => v.registered === true).slice(0, 4);
+      setRegisteredVehicles(registered);
+    }
+  }, []);
 
   return (
     <section className="py-20 lg:py-32 bg-background">
@@ -29,11 +37,18 @@ const RegisteredVehiclesSection = () => {
         </div>
 
         {/* Grid de véhicules */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-          {registeredVehicles.map((vehicle) => (
-            <VehicleCard key={vehicle.id} {...vehicle} />
-          ))}
-        </div>
+        {registeredVehicles.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+            {registeredVehicles.map((vehicle) => (
+              <VehicleCard key={vehicle.id} {...vehicle} />
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-12 text-muted-foreground">
+            <p className="text-lg mb-4">Aucun véhicule immatriculé pour le moment</p>
+            <p className="text-sm">Ajoutez des véhicules depuis le dashboard administrateur</p>
+          </div>
+        )}
 
         {/* CTA */}
         <div className="text-center">

@@ -25,6 +25,7 @@ interface VehicleData {
   climateControl: boolean;
   deliveryDays: number;
   image: string;
+  registered: boolean;
 }
 
 export default function VehiclesAdmin() {
@@ -86,6 +87,7 @@ export default function VehiclesAdmin() {
                   <TableHead>Année</TableHead>
                   <TableHead>Prix</TableHead>
                   <TableHead>Type</TableHead>
+                  <TableHead>Statut</TableHead>
                   <TableHead>Actions</TableHead>
                 </TableRow>
               </TableHeader>
@@ -101,6 +103,15 @@ export default function VehiclesAdmin() {
                     <TableCell>{vehicle.price.toLocaleString()}€</TableCell>
                     <TableCell>
                       <Badge variant="secondary">{vehicle.type}</Badge>
+                    </TableCell>
+                    <TableCell>
+                      {vehicle.registered ? (
+                        <Badge className="bg-green-500/10 text-green-600 border-green-500/20">
+                          Immatriculé
+                        </Badge>
+                      ) : (
+                        <Badge variant="outline">À immatriculer</Badge>
+                      )}
                     </TableCell>
                     <TableCell>
                       <Button

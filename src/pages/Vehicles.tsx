@@ -11,10 +11,6 @@ import {
 } from "@/components/ui/select";
 import { Slider } from "@/components/ui/slider";
 import { useState, useEffect } from "react";
-import carBmw from "@/assets/car-bmw.jpg";
-import carToyota from "@/assets/car-toyota.jpg";
-import carMercedes from "@/assets/car-mercedes.jpg";
-import { allVehicles } from "@/data/vehiclesData";
 
 const Vehicles = () => {
   const [selectedBrand, setSelectedBrand] = useState<string>("all");
@@ -24,18 +20,17 @@ const Vehicles = () => {
     useState<string>("all");
   const [hasClimateControl, setHasClimateControl] = useState<string>("all");
   const [maxPrice, setMaxPrice] = useState<number[]>([60000]);
-  const [adminVehicles, setAdminVehicles] = useState<any[]>([]);
+  const [vehicles, setVehicles] = useState<any[]>([]);
 
-  // Charger les véhicules admin depuis localStorage
+  // Charger les véhicules depuis localStorage
   useEffect(() => {
     const savedVehicles = localStorage.getItem("admin-vehicles");
     if (savedVehicles) {
-      setAdminVehicles(JSON.parse(savedVehicles));
+      setVehicles(JSON.parse(savedVehicles));
     }
   }, []);
 
-  // Combiner les véhicules statiques avec les véhicules admin
-  const combinedVehicles = [...allVehicles, ...adminVehicles];
+  const combinedVehicles = vehicles;
 
   // Récupérer toutes les valeurs uniques pour les filtres
   const brands = [...new Set(combinedVehicles.map((vehicle) => vehicle.brand))];
