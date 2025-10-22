@@ -71,14 +71,14 @@ const Vehicles = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
 
-      <main className="pt-32 pb-20">
-        <div className="container mx-auto px-4 lg:px-8">
+      <main className="pt-24 sm:pt-28 md:pt-32 pb-16 sm:pb-20">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6">
+          <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 animate-fade-in">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground mb-4 sm:mb-6">
               Nos <span className="text-primary">véhicules</span>
             </h1>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-base sm:text-lg text-muted-foreground px-4">
               Parcourez notre sélection de véhicules soigneusement inspectés et
               garantis. Trouvez la voiture qui correspond parfaitement à vos
               besoins.
@@ -86,8 +86,8 @@ const Vehicles = () => {
           </div>
 
           {/* Filters */}
-          <div className="bg-card rounded-2xl p-8 shadow-card border border-border/50 mb-12">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="bg-card rounded-2xl p-4 sm:p-6 lg:p-8 shadow-card border border-border/50 mb-8 sm:mb-12 animate-fade-in">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
               {/* Brand Filter */}
               <div>
                 <label className="block text-sm font-medium text-foreground mb-2">
@@ -192,7 +192,7 @@ const Vehicles = () => {
               </div>
 
               {/* Price Filter */}
-              <div className="lg:col-span-2">
+              <div className="sm:col-span-2 lg:col-span-2">
                 <label className="block text-sm font-medium text-foreground mb-2">
                   Budget maximum: {maxPrice[0].toLocaleString()}€
                 </label>
@@ -207,28 +207,30 @@ const Vehicles = () => {
               </div>
             </div>
 
-            <div className="flex items-center justify-between mt-6 pt-6 border-t border-border">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mt-6 pt-6 border-t border-border">
               <p className="text-sm text-muted-foreground">
                 {filteredVehicles.length} véhicule
                 {filteredVehicles.length > 1 ? "s" : ""} trouvé
                 {filteredVehicles.length > 1 ? "s" : ""}
               </p>
-              <Button variant="ghost" onClick={resetFilters}>
-                Réinitialiser les filtres
+              <Button variant="ghost" onClick={resetFilters} size="sm">
+                Réinitialiser
               </Button>
             </div>
           </div>
 
           {/* Vehicle Grid */}
           {filteredVehicles.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-              {filteredVehicles.map((vehicle) => (
-                <VehicleCard key={vehicle.id} {...vehicle} />
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8 animate-fade-in">
+              {filteredVehicles.map((vehicle, index) => (
+                <div key={vehicle.id} className="animate-scale-in" style={{ animationDelay: `${index * 50}ms` }}>
+                  <VehicleCard {...vehicle} />
+                </div>
               ))}
             </div>
           ) : (
-            <div className="text-center py-20">
-              <p className="text-xl text-muted-foreground mb-6">
+            <div className="text-center py-12 sm:py-20 px-4 animate-fade-in">
+              <p className="text-lg sm:text-xl text-muted-foreground mb-6">
                 Aucun véhicule ne correspond à vos critères.
               </p>
               <Button variant="hero" onClick={resetFilters}>

@@ -3,29 +3,29 @@ import { Car, Phone, Mail, MapPin, Facebook, Instagram, Linkedin } from "lucide-
 
 const Footer = () => {
   return (
-    <footer className="bg-primary text-primary-foreground mt-20">
-      <div className="container mx-auto px-4 lg:px-8 py-12 lg:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+    <footer className="bg-primary text-primary-foreground mt-12 sm:mt-16 lg:mt-20 animate-fade-in">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-12">
           {/* Brand */}
-          <div>
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center">
-                <Car className="w-6 h-6 text-secondary-foreground" />
+          <div className="animate-fade-in">
+            <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-secondary flex items-center justify-center">
+                <Car className="w-5 h-5 sm:w-6 sm:h-6 text-secondary-foreground" />
               </div>
               <div>
-                <span className="text-xl font-bold">ASR</span>
-                <span className="text-xl font-bold text-secondary">-AUTO</span>
+                <span className="text-lg sm:text-xl font-bold">ASR</span>
+                <span className="text-lg sm:text-xl font-bold text-secondary">-AUTO</span>
               </div>
             </div>
-            <p className="text-primary-foreground/80 text-sm leading-relaxed">
+            <p className="text-primary-foreground/80 text-xs sm:text-sm leading-relaxed">
               Votre partenaire de confiance pour l'achat de voitures en toute transparence.
               Inspection rigoureuse, garantie écrite, livraison suivie.
             </p>
           </div>
 
           {/* Navigation */}
-          <div>
-            <h3 className="text-lg font-semibold mb-6">Navigation</h3>
+          <div className="animate-fade-in" style={{ animationDelay: "100ms" }}>
+            <h3 className="text-base sm:text-lg font-semibold mb-4 sm:mb-6">Navigation</h3>
             <ul className="space-y-3">
               <li>
                 <Link to="/" className="text-primary-foreground/80 hover:text-secondary transition-smooth text-sm">
@@ -51,8 +51,8 @@ const Footer = () => {
           </div>
 
           {/* Services */}
-          <div>
-            <h3 className="text-lg font-semibold mb-6">Services</h3>
+          <div className="animate-fade-in" style={{ animationDelay: "200ms" }}>
+            <h3 className="text-base sm:text-lg font-semibold mb-4 sm:mb-6">Services</h3>
             <ul className="space-y-3 text-sm">
               <li className="text-primary-foreground/80">Inspection 150 Points</li>
               <li className="text-primary-foreground/80">Garantie Moteur & Boîte</li>
@@ -62,8 +62,8 @@ const Footer = () => {
           </div>
 
           {/* Contact */}
-          <div>
-            <h3 className="text-lg font-semibold mb-6">Contact</h3>
+          <div className="animate-fade-in" style={{ animationDelay: "300ms" }}>
+            <h3 className="text-base sm:text-lg font-semibold mb-4 sm:mb-6">Contact</h3>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <Phone className="w-5 h-5 mt-0.5 flex-shrink-0 text-secondary" />
@@ -117,8 +117,8 @@ const Footer = () => {
         </div>
 
         {/* Copyright */}
-        <div className="border-t border-primary-foreground/20 mt-12 pt-8 text-center">
-          <p className="text-primary-foreground/70 text-sm">
+        <div className="border-t border-primary-foreground/20 mt-8 sm:mt-12 pt-6 sm:pt-8 text-center animate-fade-in">
+          <p className="text-primary-foreground/70 text-xs sm:text-sm">
             © {new Date().getFullYear()} ASR-AUTO. Tous droits réservés.
           </p>
         </div>

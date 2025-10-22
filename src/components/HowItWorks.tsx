@@ -29,47 +29,47 @@ const steps = [
 
 const HowItWorks = () => {
   return (
-    <section className="py-20 lg:py-32 bg-muted/30">
-      <div className="container mx-auto px-4 lg:px-8">
+    <section className="py-16 sm:py-20 lg:py-32 bg-muted/30">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 animate-fade-in">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 sm:mb-6">
             Comment ça <span className="text-primary">marche</span> ?
           </h2>
-          <p className="text-lg text-muted-foreground">
+          <p className="text-base sm:text-lg text-muted-foreground px-4">
             Un processus simple et transparent en 4 étapes pour vous garantir une expérience
             d'achat sereine et sécurisée.
           </p>
         </div>
 
         {/* Steps Timeline */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 relative">
           {/* Connection Line - Desktop */}
           <div className="hidden lg:block absolute top-16 left-0 right-0 h-0.5 bg-gradient-to-r from-primary via-secondary to-accent" style={{ width: 'calc(100% - 8rem)', left: '4rem' }} />
 
           {steps.map((step, index) => (
             <div
               key={index}
-              className="relative animate-fade-in-up"
+              className="relative animate-scale-in"
               style={{ animationDelay: `${index * 150}ms` }}
             >
-              <div className="bg-card rounded-2xl p-8 shadow-card hover:shadow-elegant transition-smooth h-full border border-border/50">
+              <div className="bg-card rounded-2xl p-6 sm:p-8 shadow-card hover:shadow-elegant transition-smooth h-full border border-border/50 hover:scale-105">
 
-              <div className="flex flex-row items-center mb-6 justify-between">
+              <div className="flex flex-row items-center mb-4 sm:mb-6 justify-between">
                 {/* Step Number */}
-                <div className="w-16 h-16 rounded-xl gradient-primary flex items-center justify-center mb-6 relative z-10">
-                  <span className="text-2xl font-bold text-primary-foreground">{step.number}</span>
+                <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-xl gradient-primary flex items-center justify-center relative z-10 animate-fade-in">
+                  <span className="text-xl sm:text-2xl font-bold text-primary-foreground">{step.number}</span>
                 </div>
 
                 {/* Icon */}
-                <div className="w-14 h-14 rounded-lg bg-muted flex items-center justify-center mb-6">
-                  <step.icon className="w-7 h-7 text-primary" />
+                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-lg bg-muted flex items-center justify-center">
+                  <step.icon className="w-6 h-6 sm:w-7 sm:h-7 text-primary" />
                 </div>
               </div>
 
                 {/* Content */}
-                <h3 className="text-xl font-semibold text-foreground mb-4">{step.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{step.description}</p>
+                <h3 className="text-lg sm:text-xl font-semibold text-foreground mb-3 sm:mb-4">{step.title}</h3>
+                <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">{step.description}</p>
               </div>
             </div>
           ))}

@@ -9,28 +9,28 @@ const ServicesSection = () => {
   const [isOrderFormOpen, setIsOrderFormOpen] = useState(false);
 
   return (
-    <section className="py-20 lg:py-32 bg-muted/30">
-      <div className="container mx-auto px-4 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+    <section className="py-16 sm:py-20 lg:py-32 bg-muted/30">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 animate-fade-in">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 sm:mb-6">
             Nos <span className="text-primary">Services</span>
           </h2>
-          <p className="text-lg text-muted-foreground">
+          <p className="text-base sm:text-lg text-muted-foreground px-4">
             Découvrez toutes nos solutions pour faciliter votre acquisition
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {/* Vente et achat sur commande */}
-          <Card className="border-2 hover:border-primary transition-smooth hover:shadow-card">
+          <Card className="border-2 hover:border-primary transition-smooth hover:shadow-card animate-scale-in hover:scale-105">
             <CardHeader>
-              <div className="w-14 h-14 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                <ShoppingCart className="w-7 h-7 text-primary" />
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                <ShoppingCart className="w-6 h-6 sm:w-7 sm:h-7 text-primary" />
               </div>
-              <CardTitle className="text-2xl">Vente & Achat sur Commande</CardTitle>
+              <CardTitle className="text-xl sm:text-2xl">Vente & Achat sur Commande</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-muted-foreground leading-relaxed mb-4">
+              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-4">
                 Trouvez le véhicule de vos rêves même s'il n'est pas en stock. Nous importons
                 le véhicule exact que vous souhaitez avec toutes les options désirées.
               </p>
@@ -64,15 +64,15 @@ const ServicesSection = () => {
           </Card>
 
           {/* Achat de véhicules */}
-          <Card className="border-2 hover:border-primary transition-smooth hover:shadow-card">
+          <Card className="border-2 hover:border-primary transition-smooth hover:shadow-card animate-scale-in hover:scale-105" style={{ animationDelay: "100ms" }}>
             <CardHeader>
-              <div className="w-14 h-14 rounded-lg bg-secondary/10 flex items-center justify-center mb-4">
-                <FileCheck className="w-7 h-7 text-secondary" />
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-lg bg-secondary/10 flex items-center justify-center mb-4">
+                <FileCheck className="w-6 h-6 sm:w-7 sm:h-7 text-secondary" />
               </div>
-              <CardTitle className="text-2xl">Rachat de Véhicules</CardTitle>
+              <CardTitle className="text-xl sm:text-2xl">Rachat de Véhicules</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-muted-foreground leading-relaxed mb-4">
+              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-4">
                 Nous achetons votre véhicule au meilleur prix, qu'il soit immatriculé ou non.
                 Estimation gratuite et paiement rapide.
               </p>
@@ -106,15 +106,15 @@ const ServicesSection = () => {
           </Card>
 
           {/* Paiement en 3 tranches */}
-          <Card className="border-2 hover:border-primary transition-smooth hover:shadow-card md:col-span-2 lg:col-span-1">
+          <Card className="border-2 hover:border-primary transition-smooth hover:shadow-card md:col-span-2 lg:col-span-1 animate-scale-in hover:scale-105" style={{ animationDelay: "200ms" }}>
             <CardHeader>
-              <div className="w-14 h-14 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
-                <CreditCard className="w-7 h-7 text-accent" />
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
+                <CreditCard className="w-6 h-6 sm:w-7 sm:h-7 text-accent" />
               </div>
-              <CardTitle className="text-2xl">Paiement Flexible</CardTitle>
+              <CardTitle className="text-xl sm:text-2xl">Paiement Flexible</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-muted-foreground leading-relaxed mb-4">
+              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-4">
                 Facilitez votre achat avec notre solution de paiement en 3 tranches.
               </p>
               <div className="space-y-3">
