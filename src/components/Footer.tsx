@@ -13,7 +13,7 @@ const Footer = () => {
                 <Car className="w-6 h-6 text-secondary-foreground" />
               </div>
               <div>
-                <span className="text-xl font-bold">BRU</span>
+                <span className="text-xl font-bold">ASR</span>
                 <span className="text-xl font-bold text-secondary">-AUTO</span>
               </div>
             </div>
@@ -34,7 +34,12 @@ const Footer = () => {
               </li>
               <li>
                 <Link to="/vehicules" className="text-primary-foreground/80 hover:text-secondary transition-smooth text-sm">
-                  Nos Véhicules
+                  Véhicules
+                </Link>
+              </li>
+               <li>
+                <Link to="/commander" className="text-primary-foreground/80 hover:text-secondary transition-smooth text-sm">
+                  Commander
                 </Link>
               </li>
               <li>
@@ -63,8 +68,8 @@ const Footer = () => {
               <li className="flex items-start gap-3">
                 <Phone className="w-5 h-5 mt-0.5 flex-shrink-0 text-secondary" />
                 <div>
-                  <a href="tel:+32123456789" className="text-primary-foreground/80 hover:text-secondary transition-smooth text-sm">
-                    +32 1 23 45 67 89
+                  <a href="tel:+22871464111" className="text-primary-foreground/80 hover:text-secondary transition-smooth text-sm">
+                    +228 71 46 41 11
                   </a>
                 </div>
               </li>
@@ -79,13 +84,13 @@ const Footer = () => {
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 mt-0.5 flex-shrink-0 text-secondary" />
                 <div className="text-primary-foreground/80 text-sm">
-                  Bruxelles, Belgique
+                  Lomé, Togo
                 </div>
               </li>
             </ul>
 
             {/* Social Media */}
-            <div className="flex items-center gap-4 mt-6">
+            {/* <div className="flex items-center gap-4 mt-6">
               <a
                 href="#"
                 className="w-10 h-10 rounded-lg bg-primary-foreground/10 hover:bg-secondary flex items-center justify-center transition-smooth group"
@@ -107,14 +112,14 @@ const Footer = () => {
               >
                 <Linkedin className="w-5 h-5 text-primary-foreground group-hover:text-secondary-foreground" />
               </a>
-            </div>
+            </div> */}
           </div>
         </div>
 
         {/* Copyright */}
         <div className="border-t border-primary-foreground/20 mt-12 pt-8 text-center">
           <p className="text-primary-foreground/70 text-sm">
-            © {new Date().getFullYear()} BRU-AUTO. Tous droits réservés.
+            © {new Date().getFullYear()} ASR-AUTO. Tous droits réservés.
           </p>
         </div>
       </div>

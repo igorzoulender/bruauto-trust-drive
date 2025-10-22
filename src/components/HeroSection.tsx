@@ -30,7 +30,7 @@ const HeroSection = () => {
           {/* Main Heading */}
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-primary-foreground mb-6 animate-fade-in-up leading-tight">
             Votre voiture de rêve,{" "}
-            <span className="text-secondary">en toute sérénité</span>
+            <span className="text-secondary">en toute sécurité</span>
           </h1>
 
           {/* Subheading */}
