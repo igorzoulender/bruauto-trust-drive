@@ -35,9 +35,9 @@ const CTASection = () => {
                 size="xl"
                 className="bg-primary-foreground/10 backdrop-blur-sm border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground hover:text-primary w-full sm:w-auto hover:scale-105 transition-smooth"
               >
-                <a href="tel:+32123456789">
+                <a href="tel:+228 71 46 41 11">
                   <Phone className="w-5 h-5" />
-                  <span className="text-sm sm:text-base">+32 1 23 45 67 89</span>
+                  <span className="text-sm sm:text-base">+228 71 46 41 11</span>
                 </a>
               </Button>
             </div>
