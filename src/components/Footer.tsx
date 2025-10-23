@@ -69,15 +69,18 @@ const Footer = () => {
                 <Phone className="w-5 h-5 mt-0.5 flex-shrink-0 text-secondary" />
                 <div>
                   <a href="tel:+22871464111" className="text-primary-foreground/80 hover:text-secondary transition-smooth text-sm">
-                    +228 71 46 41 11
+                    +228 71 46 41 11 
+                  </a> / 
+                  <a href="tel:+22870334723" className="text-primary-foreground/80 hover:text-secondary transition-smooth text-sm">
+                    &nbsp;+228 70 33 47 23
                   </a>
                 </div>
               </li>
               <li className="flex items-start gap-3">
                 <Mail className="w-5 h-5 mt-0.5 flex-shrink-0 text-secondary" />
                 <div>
-                  <a href="mailto:contact@bru-auto.be" className="text-primary-foreground/80 hover:text-secondary transition-smooth text-sm break-all">
-                    contact@bru-auto.be
+                  <a href="mailto:asrauto365@gmail.com" className="text-primary-foreground/80 hover:text-secondary transition-smooth text-sm break-all">
+                    asrauto365@gmail.com
                   </a>
                 </div>
               </li>

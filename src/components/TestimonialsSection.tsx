@@ -35,7 +35,7 @@ const TestimonialsSection = () => {
           </h2>
           <p className="text-lg text-muted-foreground">
             Découvrez les témoignages de nos clients satisfaits qui ont trouvé leur voiture
-            idéale avec BRU-AUTO.
+            idéale avec ASR-AUTO.
           </p>
         </div>
 

@@ -37,7 +37,7 @@ const CTASection = () => {
               >
                 <a href="tel:+228 71 46 41 11">
                   <Phone className="w-5 h-5" />
-                  <span className="text-sm sm:text-base">+228 71 46 41 11</span>
+                  <span className="text-sm sm:text-base">+228 71 46 41 11 / +228 70 33 47 23</span>
                 </a>
               </Button>
             </div>

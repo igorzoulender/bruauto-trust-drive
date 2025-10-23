@@ -37,7 +37,7 @@ const TrustSection = () => {
             Nos garanties de <span className="text-primary">confiance</span>
           </h2>
           <p className="text-base sm:text-lg text-muted-foreground px-4">
-            Chez BRU-AUTO, nous mettons la transparence et la sécurité au cœur de notre service.
+            Chez ASR-AUTO, nous mettons la transparence et la sécurité au cœur de notre service.
             Voici ce qui nous différencie.
           </p>
         </div>

@@ -94,7 +94,7 @@ const Contact = () => {
                         href="tel:+22871464111"
                         className="text-muted-foreground hover:text-primary transition-smooth"
                       >
-                        +228 71 46 41 11
+                        +228 71 46 41 11 / +228 70 33 47 23
                       </a>
                       <p className="text-sm text-muted-foreground mt-1">
                         Lun - Ven : 9h - 18h
@@ -109,10 +109,10 @@ const Contact = () => {
                     <div>
                       <p className="font-semibold text-foreground mb-1">Email</p>
                       <a
-                        href="mailto:contact@bru-auto.be"
+                        href="mailto:asrauto365@gmail.com"
                         className="text-muted-foreground hover:text-primary transition-smooth"
                       >
-                        contact@bru-auto.be
+                        asrauto365@gmail.com
                       </a>
                       <p className="text-sm text-muted-foreground mt-1">
                         Réponse sous 24h
