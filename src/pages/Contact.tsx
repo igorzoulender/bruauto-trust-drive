@@ -52,9 +52,9 @@ const Contact = () => {
 
   const handleWhatsApp = () => {
     const message = encodeURIComponent(
-      "Bonjour, je suis intéressé par vos services BRU-AUTO."
+      "Bonjour, je suis intéressé par vos services ASR-AUTO."
     );
-    window.open(`https://wa.me/32123456789?text=${message}`, "_blank");
+    window.open(`https://wa.me/22871464111?text=${message}`, "_blank");
   };
 
   return (
@@ -91,10 +91,10 @@ const Contact = () => {
                     <div>
                       <p className="font-semibold text-foreground mb-1">Téléphone</p>
                       <a
-                        href="tel:+32123456789"
+                        href="tel:+22871464111"
                         className="text-muted-foreground hover:text-primary transition-smooth"
                       >
-                        +32 1 23 45 67 89
+                        +228 71 46 41 11
                       </a>
                       <p className="text-sm text-muted-foreground mt-1">
                         Lun - Ven : 9h - 18h
@@ -127,7 +127,7 @@ const Contact = () => {
                     <div>
                       <p className="font-semibold text-foreground mb-1">Adresse</p>
                       <p className="text-muted-foreground">
-                        Bruxelles, Belgique
+                        Lomé, Togo
                       </p>
                       <p className="text-sm text-muted-foreground mt-1">
                         Rendez-vous sur demande
@@ -230,7 +230,7 @@ const Contact = () => {
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         className="mt-2"
-                        placeholder="+32 1 23 45 67 89"
+                        placeholder="+228 00 00 00 00"
                       />
                     </div>
                   </div>
