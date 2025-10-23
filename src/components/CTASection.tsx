@@ -43,7 +43,7 @@ const CTASection = () => {
             </div>
 
             {/* Trust Indicators */}
-            <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 sm:gap-8 mt-8 sm:mt-12 text-primary-foreground/80 animate-fade-in px-4">
+            {/* <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 sm:gap-8 mt-8 sm:mt-12 text-primary-foreground/80 animate-fade-in px-4">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-accent" />
                 <span className="text-sm">Réponse sous 2h</span>
@@ -56,7 +56,7 @@ const CTASection = () => {
                 <div className="w-2 h-2 rounded-full bg-accent" />
                 <span className="text-sm">Sans engagement</span>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

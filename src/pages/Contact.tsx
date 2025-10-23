@@ -157,6 +157,16 @@ const Contact = () => {
                   <MessageCircle className="w-5 h-5" />
                   Ouvrir WhatsApp
                 </Button>
+
+                 {/* <Button
+                  onClick={handleWhatsApp}
+                  variant="secondary"
+                  size="lg"
+                  className="w-full"
+                >
+                  <MessageCircle className="w-5 h-5" />
+                  Ouvrir WhatsApp (+228 70 33 47 23)
+                </Button> */}
               </div>
 
               {/* Opening Hours */}

@@ -9,9 +9,10 @@ const Footer = () => {
           {/* Brand */}
           <div className="animate-fade-in">
             <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-secondary flex items-center justify-center">
+              {/* <img src="/img/asr.jpeg" alt=""/> */}
+              {/* <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-secondary flex items-center justify-center">
                 <Car className="w-5 h-5 sm:w-6 sm:h-6 text-secondary-foreground" />
-              </div>
+              </div> */}
               <div>
                 <span className="text-lg sm:text-xl font-bold">ASR</span>
                 <span className="text-lg sm:text-xl font-bold text-secondary">-AUTO</span>

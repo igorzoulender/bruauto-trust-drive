@@ -73,8 +73,8 @@ const ServicesSection = () => {
             </CardHeader>
             <CardContent>
               <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-4">
-                Nous achetons votre véhicule au meilleur prix, qu'il soit immatriculé ou non.
-                Estimation gratuite et paiement rapide.
+                Nous achetons votre véhicule au meilleur prix, qu'il soit immatriculé ou non,
+                estimation gratuite et paiement rapide.
               </p>
               <ul className="space-y-2">
                 <li className="flex items-start gap-2">

@@ -72,7 +72,7 @@ const TrustSection = () => {
         </div>
 
         {/* Stats Banner */}
-        <div className="mt-12 sm:mt-16 rounded-2xl gradient-hero p-6 sm:p-8 lg:p-12 shadow-elegant animate-fade-in">
+        {/* <div className="mt-12 sm:mt-16 rounded-2xl gradient-hero p-6 sm:p-8 lg:p-12 shadow-elegant animate-fade-in">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 text-center">
             <div className="animate-scale-in" style={{ animationDelay: "100ms" }}>
               <p className="text-4xl sm:text-5xl font-bold text-secondary mb-2">500+</p>
@@ -87,7 +87,7 @@ const TrustSection = () => {
               <p className="text-sm sm:text-base text-primary-foreground/80">Mois de garantie</p>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );

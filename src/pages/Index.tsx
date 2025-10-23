@@ -76,7 +76,7 @@ const Index = () => {
 
         <RegisteredVehiclesSection />
         <TrustSection />
-        <TestimonialsSection />
+        {/* <TestimonialsSection /> */}
         <CTASection />
       </main>
 
